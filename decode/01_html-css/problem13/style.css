@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+}
+
+.smol {
+    height: 100px;
+}
+
+.col {
+    text-align: center;
+    font-size: 15pt;
+    border-style: dashed;
+    margin: 10px;
+    padding: 15px;
+}
