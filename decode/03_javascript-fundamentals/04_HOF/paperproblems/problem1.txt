@@ -3,9 +3,16 @@ You don't know what it does, but there are clues at the bottom of this file
 Use these clues to describe what filter is.
 Specifically:
  - How many parameters does it have
+
+2
+
  - What are the types of the parameters
+
+Array + A Function
+
  - What does it do?
 
+Takes an array & runs a function isEven or isOdd
 
 
 var evenNumbers = [2, 4, 6, 8, 10];

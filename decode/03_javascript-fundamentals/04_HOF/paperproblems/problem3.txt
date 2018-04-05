@@ -9,3 +9,8 @@ function f(g) {
 }
 
 console.log(f(k));
+
+
+20
+
+Actual answer: 15

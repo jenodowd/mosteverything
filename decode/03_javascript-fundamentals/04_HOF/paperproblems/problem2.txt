@@ -3,8 +3,16 @@ You don't know what it does, but there are clues at the bottom of this file
 Use these clues to describe what map is.
 Specifically:
  - How many parameters does it have
+
+2
+
  - What are the types of the parameters
+
+Array & Function
+
  - What does it do?
+
+ Invokes a function on an Array
 
 var someNumbers = [1, 2, 3, 4];
 var someStrings = ["bob", "ERIC"];

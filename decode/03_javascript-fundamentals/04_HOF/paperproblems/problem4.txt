@@ -13,3 +13,5 @@ function f(g, h) {
 }
 
 console.log(f(k, m));
+
+Answer: 14
