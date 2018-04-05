@@ -2,24 +2,48 @@ var assert = require('assert');
 
 // we need 5 test cases. 
 let inputs = [
-  
+  [1, 3, 5],
+  [2, 2, "a"],
+  [7, 10, 1],
+  ["a", 1, 2],
+  [10, 1, 2]
 ]
 
 let outputs = [
-  
+  9,
+  4,
+  18,
+  3,
+  13
 ]
 
 /*
 Make this function return the sum of all the numbers in the input array. If any element in the array is not a number, skip it. If the array is empty, return zero.
 */
+
+// for (var i = 0; i<inputs.length; i++) {
+//     if (inputs[i] * 1 === "NaN") {
+//         console.log(inputs[i] = 0)
+//     }
+// }
+
+
+
 function f(arr) {
-    
+    var sum = 0;
+    for (var i = 0; i<arr.length; i++) {
+        if (typeof arr[i] === "number") {
+        sum = sum + arr[i]; 
+        }
+    } return sum;
 }
 
 function runTest(i) {
     if(i > inputs.length) throw new Error("You do not have enough test cases");
     var expected = outputs[i];
+    console.log("expected: " + expected)
     var actual = f(inputs[i]);
+    console.log("actual :" + actual)
     assert.deepEqual(actual, expected);
 }
 
