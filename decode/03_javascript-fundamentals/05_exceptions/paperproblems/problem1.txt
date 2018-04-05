@@ -13,3 +13,6 @@ function g() {
 }
 
 g();
+
+
+Answer: 500
