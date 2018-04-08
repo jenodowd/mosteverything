@@ -25,6 +25,6 @@ var twice = function(f) {
 
 twice(greet);
 
-FINAL
+// FINAL
 
-(function(x) {console.log("hello " + x);})(function(f) {f("bob");f("mary");})
+( function(x) {console.log("hello " + x);} ) (function(f) {f("bob"); f("mary");} )

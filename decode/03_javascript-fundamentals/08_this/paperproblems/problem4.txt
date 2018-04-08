@@ -13,4 +13,4 @@ function f(g) {
 
 f(obj.bar);
 
-//Answer NaN
+//Answer Error

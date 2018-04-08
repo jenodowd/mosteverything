@@ -13,18 +13,6 @@ function call(f) {
 
 call(greet);
 
-//Answer:
-
-var greet = function(x) {
-    console.log("hello " + x);
-}
-
-var call = function(f) {
-    f("bob");
-}
-
-call(greet);
-
 
 // greet definition
 (function(x) { console.log("hello " + x) })
@@ -32,7 +20,7 @@ call(greet);
 (function(f) { f("bob") } )
 
 
-FINAL
+// FINAL
 
 (function(f) { f("bob") } )(function(x) { console.log("hello " + x) })
 

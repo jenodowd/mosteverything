@@ -11,13 +11,13 @@
 
 // module.exports = t;
 
-var c = function(g, h) { // g = function (y) {return y + 1}, h = function (x) {return x * 2}
+function c (g, h) { // g = function (y) {return y + 1}, h = function (x) {return x * 2}
     var x = g(6); // 7
     var y = h(8); // 16
     return [x, y]; // [7, 16]
 }
 
-var t = function() {
+function t () {
     return c(function (y) {return y + 1}, function (x) {return x * 2}); // [7, 16]
 }
 

@@ -9,14 +9,7 @@ greet(bob);
 
 
 
-//Answer
 
-var greet = function(x) {
-    console.log("hello " + x);
-}
+// FINAL:
 
-greet(bob);
-
-
-FINAL:
-(function (x) {console.log("hello " + x);})("bob")
+(function (x) {console.log("hello " + x);}) ("bob")
