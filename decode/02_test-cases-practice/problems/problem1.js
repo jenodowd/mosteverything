@@ -28,16 +28,15 @@ let outputs = [
 // }
 
 function f(str) {
-  console.log(str)
-  str = str[0]
-  console.log(str)
-  return str;
+   return str[0];
 }
 
 
 function runTest(i) {
     var expected = outputs[i];
+    console.log("expected: " + expected)
     var actual = f(inputs[i]);
+    console.log("actual: " + actual)
     assert.deepEqual(actual, expected);
 }
 

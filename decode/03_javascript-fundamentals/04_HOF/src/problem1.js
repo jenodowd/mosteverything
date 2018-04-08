@@ -94,10 +94,18 @@ function nullify(f) {
 
 function map(lst, f) {
 
-    var arr = lst.map(f)
+    // var arr = lst.map(f)
 
-    return arr;
+    // return arr;
     
+    var arr = [];
+
+    for (var i = 0; i < lst.length; i++) {
+        var x = f(lst[i])
+        arr.push(x)
+    } 
+    return arr;
+
 
     // lst is an array and f is a function
     // map returns an array with the same number of elements as lst
@@ -124,7 +132,17 @@ function filter(lst, f) {
     // function isEven(x) {return x % 2 == 0;}
     // filter([1, 2, 3, 4, 5], isEven) returns [2,4];   
 
-    return lst.filter(f) 
+    //return lst.filter(f) 
+
+    var arr = [];
+
+    for (var i = 0; i < lst.length; i++) {
+
+        if (f(lst[i]) === true) {
+            arr.push(lst[i])
+        } 
+
+    } return arr;
 
 }
 

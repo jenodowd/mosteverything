@@ -3,18 +3,19 @@ var assert = require('assert');
 // we need 5 test cases. 
 let inputs = [
   [1, 3, 5],
+  [],
   [2, 2, "a"],
   [7, 10, 1],
-  ["a", 1, 2],
-  [10, 1, 2]
+  ["a", 1, 2]
+
 ]
 
 let outputs = [
   9,
-  4,
+  0,
+  "skip",
   18,
-  3,
-  13
+  "skip"
 ]
 
 /*
@@ -28,15 +29,36 @@ Make this function return the sum of all the numbers in the input array. If any 
 // }
 
 
+// function f(arr) {
+//     var sum = 0;
+//     for (var i = 0; i<arr.length; i++) {
+//         if (typeof arr[i] === "number") {
+//         sum = sum + arr[i]; 
+//         }
+//     } return sum;
+// }
+
 
 function f(arr) {
-    var sum = 0;
-    for (var i = 0; i<arr.length; i++) {
-        if (typeof arr[i] === "number") {
-        sum = sum + arr[i]; 
-        }
-    } return sum;
-}
+
+    var sum = arr.reduce(add, 0);
+
+    function add(a, b) {
+        return a + b;
+    };
+
+    if (arr.length < 1) {
+        return 0;
+    } else if (typeof sum !== "number") {
+        return "skip";
+    }
+
+    return sum;
+
+} 
+
+
+
 
 function runTest(i) {
     if(i > inputs.length) throw new Error("You do not have enough test cases");
@@ -52,4 +74,3 @@ runTest(1);
 runTest(2);
 runTest(3);
 runTest(4);
-

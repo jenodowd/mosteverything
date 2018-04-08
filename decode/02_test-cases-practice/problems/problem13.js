@@ -6,7 +6,7 @@ let inputs = [
   "javascript",
   "nan",
   "WEW",
-  "no"
+  "no n"
 ]
 
 let outputs = [

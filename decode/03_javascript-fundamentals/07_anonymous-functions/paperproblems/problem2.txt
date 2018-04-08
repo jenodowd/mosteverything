@@ -12,3 +12,29 @@ function call(f) {
 }
 
 call(greet);
+
+//Answer:
+
+var greet = function(x) {
+    console.log("hello " + x);
+}
+
+var call = function(f) {
+    f("bob");
+}
+
+call(greet);
+
+
+// greet definition
+(function(x) { console.log("hello " + x) })
+// call definition
+(function(f) { f("bob") } )
+
+
+FINAL
+
+(function(f) { f("bob") } )(function(x) { console.log("hello " + x) })
+
+
+

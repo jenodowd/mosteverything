@@ -5,14 +5,16 @@ let inputs = [
     "",
     "one",
     "abc ab a",
-    "abc def ghi"
+    "abc def ghi",
+    "abcde gf"
 ]
 
 let outputs = [
   "",
   "one",
   "abc",
-  "ghi"
+  "ghi",
+  "abcde"
 ]
 
 /*
@@ -45,5 +47,5 @@ runTest(0);
 runTest(1);
 runTest(2);
 runTest(3);
-//runTest(4);
+runTest(4);
 

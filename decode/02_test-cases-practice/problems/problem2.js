@@ -21,13 +21,11 @@ undefined
 
 function f(str) {
     if (str == "") {
-        return console.log(undefined)
+        return undefined
     } else {
-    //console.log(str)
-    str = str.charAt(str.length-1)
-    //console.log(str)
-    return str;
+        return str.charAt(str.length-1);
     }
+
 }
 
 function runTest(i) {

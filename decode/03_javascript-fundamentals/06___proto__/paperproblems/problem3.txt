@@ -11,4 +11,9 @@ You get the following exception:
 
 
 a) Explain what this exception means.
+
+It's in a cycle between a & b.
+
 b) Why does this exception exist? What's wrong with a cyclic __proto__ value?
+
+There's no value, just a loop.

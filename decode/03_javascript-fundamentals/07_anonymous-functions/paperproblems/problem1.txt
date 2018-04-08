@@ -6,3 +6,17 @@ function greet(x) {
 }
 
 greet(bob);
+
+
+
+//Answer
+
+var greet = function(x) {
+    console.log("hello " + x);
+}
+
+greet(bob);
+
+
+FINAL:
+(function (x) {console.log("hello " + x);})("bob")
