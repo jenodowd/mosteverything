@@ -9,3 +9,8 @@ function f() {
 
 f();
 f();
+
+//Answer: 
+
+2
+4

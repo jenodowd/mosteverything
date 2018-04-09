@@ -14,5 +14,7 @@ function isDog(animal) {
 animals.some(isDog)
 animals.every(isDog)
 
+//Answer:
 
-
+true
+false

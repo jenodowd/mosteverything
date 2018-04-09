@@ -11,7 +11,20 @@ function f() {
                 var b = "boom";
             }
             // Which variables are in scope on this line?
+
+            var x
+            function f
+            var y
+            function g
+            var z
+            function h
+            var p
+            function k
+            
+
         }
 
     }
 }
+
+

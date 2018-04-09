@@ -11,3 +11,7 @@ var animalNames = animals.map(
                     function(animal) {return animal.name});
 
 console.log(animalNames.join());
+
+//Answer:
+
+Nacho,Ramses,Flufftail,Popcorn,Neckbeard,

@@ -4,16 +4,30 @@ For each of the following expressions:
 
 a) x => x + 1
 
+//one parameter input, output x + 1
+
 b) x, y => x * y
+
+// (x, y) => x * y 
 
 c) x => { x * 2 }
 
+//will return undefined
+
 d) (x, z) => {console.log(z); return x * z}
+
+//takes to parameters, output product of parameters
 
 e) x => console.log(z); return x * z
 
+// x => { console.log(z); return x * z }
+
 f) (x) => x * 2
 
+//take parameter of x and returns * 2
+
 e) () => console.log("hello")
+
+//no parameters, outputs "hello"
 
 When you're done, check all your answers in the developer console.
