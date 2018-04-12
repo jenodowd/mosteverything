@@ -2,6 +2,8 @@ var body = document.getElementById('body')
 var won = false;
 var end = false;
 var counter = 0;
+var numButtons = getRndInteger(1, 10);
+var randomTime = numButtons * 1000;
 
 //RANDOM NUMBER GENERATOR:
 function getRndInteger(min, max) {
@@ -11,9 +13,9 @@ function getRndInteger(min, max) {
 
 //FIRST MAKE THE BUTTONS
 function makeButtons() {
-    for (var i = 1; i < 6; i++) {
+    for (var i = 0; i < numButtons; i++) {
         var button = document.createElement('button')
-        button.innerText = `BUTTON ${i}`
+        button.innerText = `BUTTON ${i + 1}`
         document.body.appendChild(button)
     }
     return button;
@@ -47,48 +49,46 @@ moveEach()
 
 
 //GAME FUNCTIONS
-
 function game(buttonClick) {
 
-        buttonClick.addEventListener('click', win)
-        body.addEventListener('click', clickAnywhereElse)
+    buttonClick.addEventListener('click', win)
+    body.addEventListener('click', clickAnywhereElse)
+
+    function win(event) {
+        event.stopPropagation()
+        counter = counter + 1;
         
-        function win(event) {
-            event.stopPropagation()
-            counter = counter + 1;
-
-            if (counter == 5) {
-                body.innerText = "You won!";
-                won = true;
-             }
-
-            if (end !== true) {
-                //won = true;
-                buttonClick.remove()
-            }
+        if (counter == numButtons) {
+            body.innerText = "You won!";
+            won = true;
         }
 
-        function checkWon() {
-            if (won !== true) {
-                end = true;
-                buttonClick.remove()
-
-                body.innerText = "You lost!"
-            } 
+        if (end !== true) {
+            buttonClick.remove()
         }
 
-        function clickAnywhereElse() {
+    }
+
+    function checkWon() {
+        if (won !== true) {
+            end = true;
+            buttonClick.remove()
+
             body.innerText = "You lost!"
         }
-    
-        setTimeout(checkWon, 4000);
+    }
+
+    function clickAnywhereElse() {
+        body.innerText = "You lost!"
+    }
+
+    setTimeout(checkWon, randomTime);
 
 }
 
 //RUN GAME FOR EACH BUTTON
-
 function runGameForEachButton() {
-    for(var i = 0; i < buttonArray.length; i++) {
+    for (var i = 0; i < buttonArray.length; i++) {
         game(buttonArray[i])
     }
 }
