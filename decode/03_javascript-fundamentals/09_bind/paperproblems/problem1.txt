@@ -10,3 +10,7 @@ var obj = {
 obj.bar = obj.bar.bind({baz: 4});
 
 obj.bar();
+
+//ANSWER: 
+
+4

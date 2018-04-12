@@ -3,7 +3,7 @@
 function removeEvens(lst) {
     // lst is an array of numbers
     // Returns a new list with all the even numbers of lst removed
-    return lst.filter(x => x % 2)
+    return lst.filter(x => x % 2 != 0)
 }
 
 function keepLong(lst) {
@@ -20,6 +20,15 @@ function greet(lst) {
 }
 
 function greetLong(lst) {
+
+    // var ret = [];
+    // for (var i = 0; i < lst.length; i++) {
+    //     if (lst.length >= 4) {
+    //         ret.push("Hello " + lst[i])
+    //     }
+    // }
+    // return ret;
+
     // lst is an array of strings
     // Only greet people who's names have length at least 4.
     // Otherwise ignore them completely.
