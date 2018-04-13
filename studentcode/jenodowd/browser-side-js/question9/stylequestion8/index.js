@@ -5,22 +5,40 @@ var audio = new Audio('start.mp3');
 var counter = 0;
 var gameStart = false;
 var gameEnd = false;
+var img = document.createElement("img");
+
+//SHOW IMAGE:
+function show_image(src) {
+    var img = document.createElement("img");
+    img.src = src;
+    body.appendChild(img);
+}
+
 
 //Q FUNCTIONS
 function qWin() {
     body.innerText = "Q won"
+    show_image('../stylequestion8/monkey-win.gif')
+    restart()
 }
 
 function qLose() {
     body.innerText = "Q lost"
+    show_image('../stylequestion8/monkey-lose.png')
+    restart()
 }
 
 //P FUNCTIONS
 function pWin() {
     body.innerText = "P won"
+    show_image('../stylequestion8/cat-win.gif')
+    restart()
 }
+
 function pLose() {
     body.innerText = "P lost"
+    show_image('../stylequestion8/cat-lose.gif')
+    restart()
 }
 
 //KEYSTROKES:
@@ -35,9 +53,9 @@ body.onkeydown = function(event){
         if (gameStart !== true){
         pLose();
         }
-        else pLose();
+        else pWin();
     }
-    restart()
+    //restart()
 }
 
 //START SOUND:

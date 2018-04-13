@@ -1,0 +1,37 @@
+body {
+    background-color: rgb(255, 238, 240);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+#rightImage {
+    position: relative;
+    float: right;
+    margin-left: 10vw;
+}
+
+#leftImage {
+    position: relative;
+    float: left;
+    margin-right: 10vw;
+}
+
+.imageContainer{
+    display: flex;
+}
+
+button {
+    background-color: rgb(202, 113, 113);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: white;
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+    border: 0px;
+}
