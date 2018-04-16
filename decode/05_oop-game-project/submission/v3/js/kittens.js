@@ -1,5 +1,5 @@
 // This sectin contains some game constants. It is not super interesting
-var GAME_WIDTH = 375;
+var GAME_WIDTH = 750;
 var GAME_HEIGHT = 500;
 
 var ENEMY_WIDTH = 75;
@@ -12,26 +12,35 @@ var PLAYER_HEIGHT = 54;
 // These two constants keep us from using "magic numbers" in our code
 var LEFT_ARROW_CODE = 37;
 var RIGHT_ARROW_CODE = 39;
+var UP_ARROW_CODE = 38;
+var DOWN_ARROW_CODE = 40;
 
 // These two constants allow us to DRY
 var MOVE_LEFT = 'left';
 var MOVE_RIGHT = 'right';
+var MOVE_UP = 'up'
+var MOVE_DOWN = 'down'
 
 // Preload game images
 var images = {};
-['enemy.png', 'stars.png', 'player.png'].forEach(imgName => {
+['enemy.png', 'stars.png', 'player.gif'].forEach(imgName => {
     var img = document.createElement('img');
     img.src = 'images/' + imgName;
     images[imgName] = img;
 });
 
 
-
-
-
 // This section is where you will be doing most of your coding
-class Enemy {
+class Entity {
+    render(ctx) {
+
+        ctx.drawImage(this.sprite, this.x, this.y);
+    }
+}
+
+class Enemy extends Entity{
     constructor(xPos) {
+        super();
         this.x = xPos;
         this.y = -ENEMY_HEIGHT;
         this.sprite = images['enemy.png'];
@@ -44,19 +53,24 @@ class Enemy {
         this.y = this.y + timeDiff * this.speed;
     }
 
-    render(ctx) {
-        ctx.drawImage(this.sprite, this.x, this.y);
-    }
+    // render(ctx) {
+    //     ctx.drawImage(this.sprite, this.x, this.y);
+    // }
 }
 
-class Player {
+class Player{
     constructor() {
         this.x = 2 * PLAYER_WIDTH;
         this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
-        this.sprite = images['player.png'];
+        this.sprite1 = images['player.gif'];
+        this.sprite2 = images['enemy.png'];
+
+        this.imgSelector = 'sprite1'
+        this.imgTimer = 0
     }
 
     // This method is called by the game engine when left/right arrows are pressed
+   
     move(direction) {
         if (direction === MOVE_LEFT && this.x > 0) {
             this.x = this.x - PLAYER_WIDTH;
@@ -64,15 +78,31 @@ class Player {
         else if (direction === MOVE_RIGHT && this.x < GAME_WIDTH - PLAYER_WIDTH) {
             this.x = this.x + PLAYER_WIDTH;
         }
+        else if (direction === MOVE_UP) {
+            this.y = this.y - PLAYER_HEIGHT;
+        }
+        else if (direction === MOVE_DOWN) {
+            this.y = this.y + PLAYER_HEIGHT;
+        }
     }
 
-    render(ctx) {
-        ctx.drawImage(this.sprite, this.x, this.y);
+    //SWITCH IMAGES TO MAKE GIF ANIMATION
+    render(ctx, randomMove) {
+        if(this.imgTimer > 10){
+            if(this.imgSelector === 'sprite1'){
+                this.imgSelector = 'sprite2'
+                ctx.drawImage(this[this.imgSelector], this.x+randomMove, this.y);
+            }else{
+                this.imgSelector = 'sprite1' 
+                ctx.drawImage(this[this.imgSelector], this.x+randomMove, this.y);
+            }
+            this.imgTimer = 0
+        }else{
+            ctx.drawImage(this[this.imgSelector], this.x+randomMove, this.y);  
+            this.imgTimer++ 
+        }
     }
 }
-
-
-
 
 
 /*
@@ -98,6 +128,10 @@ class Engine {
 
         // Since gameLoop will be called out of context, bind it once here.
         this.gameLoop = this.gameLoop.bind(this);
+
+        //PLAYER SHAKING VARIABLES
+        this.shakingValue = 0
+        this.shakingDirection = 0
     }
 
     /*
@@ -118,9 +152,9 @@ class Engine {
     addEnemy() {
         var enemySpots = GAME_WIDTH / ENEMY_WIDTH;
 
-        var enemySpot = 0;
+        var enemySpot;
         // Keep looping until we find a free enemy spot at random
-        while (!enemySpot && this.enemies[enemySpot]) {
+        while (enemySpot === undefined) {
             enemySpot = Math.floor(Math.random() * enemySpots);
         }
 
@@ -139,6 +173,12 @@ class Engine {
             }
             else if (e.keyCode === RIGHT_ARROW_CODE) {
                 this.player.move(MOVE_RIGHT);
+            }
+            else if (e.keyCode === UP_ARROW_CODE) {
+                this.player.move(MOVE_UP);
+            }
+            else if (e.keyCode === DOWN_ARROW_CODE) {
+                this.player.move(MOVE_DOWN);
             }
         });
 
@@ -169,7 +209,24 @@ class Engine {
         // Draw everything!
         this.ctx.drawImage(images['stars.png'], 0, 0); // draw the star bg
         this.enemies.forEach(enemy => enemy.render(this.ctx)); // draw the enemies
-        this.player.render(this.ctx); // draw the player
+
+
+        //ANIMATION SHAKING MOVEMENT - 1 SPEED LEFT AND RIGHT
+        if(this.shakingDirection === 0){
+            if(this.shakingValue > 6){
+                this.shakingDirection = 1
+            }
+            this.shakingValue = this.shakingValue + 1
+        }
+        if(this.shakingDirection === 1){
+            if(this.shakingValue < 6){
+                this.shakingDirection = 0
+            }
+            this.shakingValue = this.shakingValue - 1
+        }
+        //END ANIMATION SHAKING
+        
+        this.player.render(this.ctx,this.shakingValue); // draw the player
 
         // Check if any enemies should die
         this.enemies.forEach((enemy, enemyIdx) => {
@@ -200,10 +257,11 @@ class Engine {
 
     isPlayerDead() {
         // TODO: fix this function!
-        var self = this
+
         // console.log(this.enemies.some(function (el) {
         //     return (el.x === self.player.x)
         // }))
+        var self = this;
 
         return this.enemies.some(function (enemy) {
             return (enemy.x === self.player.x && enemy.y + ENEMY_HEIGHT > self.player.y)
