@@ -220,7 +220,7 @@ class Player {
         this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
         this.sprite1 = images['player.png'];
         this.sprite2 = images['player2.png'];
-        this.spriteDead = images['playerdead.png'];
+        //this.spriteDead = images['playerdead.png'];
 
         this.spriteLeft1 = images['moveLeft1.png'];
         this.spriteRight1 = images['moveRight1.png'];
@@ -267,14 +267,14 @@ class Player {
     render(ctx) {
         if(this.movingLeft === true || this.movingRight === true){
             if(this.movingLeft === true){
-                if(this.walkingAnimationDelay%3 === 0){
+                if(this.walkingAnimationDelay%10 === 0){
                     this.imgSelector = 'spriteLeft'+(this.walkingAnimationFrame%2+1) 
                     this.walkingAnimationFrame++
                 }
                 this.walkingAnimationDelay++
                 ctx.drawImage(this[this.imgSelector], this.x, this.y);
             }else{
-                if(this.walkingAnimationDelay%3 === 0){
+                if(this.walkingAnimationDelay%10 === 0){
                     this.imgSelector = 'spriteRight'+(this.walkingAnimationFrame%2+1)
                     this.walkingAnimationFrame++
                 }
@@ -283,6 +283,7 @@ class Player {
                 this.imgTimer++
             }
         }
+
         //MAIN GIF ANIMATION
         else{
             if (this.imgTimer > 20) {
@@ -305,6 +306,16 @@ class Player {
 
 }
 
+class Dead{
+    constructor() {
+        //super()
+        this.spriteDead = images['playerdead.png'];
+    }
+    render(ctx, x, y) {
+        ctx.drawImage(this.spriteDead, x, y);
+    }
+}
+
 /*
 This section is a tiny game engine.
 This engine will use your Enemy and Player classes to create the behavior of the game.
@@ -317,7 +328,7 @@ class Engine {
         this.player = new Player();
 
 
-        //this.setupPlayer()
+        this.dead = new Dead();
 
         this.clouds = new Clouds();
 
@@ -579,14 +590,16 @@ class Engine {
             lives = lives - 1;
             
             if (lives === 2) {
-
-                this.player.sprite1 = this.player.spriteDead;
-
+                //ctx.drawImage(this.spriteDead)
+                this.dead.render(this.ctx, this.player.x, this.player.y)
+                //this.player.render(this.spriteDead)
+                //this.player.imgSelector = 'spriteDead';
+                //this.player.sprite1 = this.player.spriteDead;
                 eww.play()
                 delete this.heart1[0]
                 document.removeEventListener('click', this.gameLoop)
                 this.ctx.fillStyle = '#ffffff';
-                this.ctx.shadowColor = 'rgb(0,0,0,0.5)';
+                this.ctx.shadowColor = 'rgb(0,0,0,0.7)';
                 this.ctx.shadowOffsetX = 0.5;
                 this.ctx.shadowOffsetY = 0.5;
                 this.ctx.shadowBlur = 5;
@@ -607,11 +620,13 @@ class Engine {
             }
             
             if (lives === 1) {
-                this.player.sprite1 = this.player.spriteDead;
+                //this.player.sprite1 = this.player.spriteDead;
+                //this.dead.render(this.ctx)
+                this.dead.render(this.ctx, this.player.x, this.player.y)
                 eww.play()
                 delete this.heart1[1]
                 this.ctx.fillStyle = '#ffffff';
-                this.ctx.shadowColor = 'rgb(0,0,0,0.5)';
+                this.ctx.shadowColor = 'rgb(0,0,0,0.7)';
                 this.ctx.shadowOffsetX = 0.5;
                 this.ctx.shadowOffsetY = 0.5;
                 this.ctx.shadowBlur = 5;
@@ -634,13 +649,14 @@ class Engine {
             }
 
             if (lives === 0) {
-                this.player.sprite1 = this.player.spriteDead;
-
+                //this.player.sprite1 = this.player.spriteDead;
+                //this.dead.render(this.ctx)
+                this.dead.render(this.ctx, this.player.x, this.player.y)
                 eww.play()
 
                 delete this.heart1[2]
                 this.ctx.fillStyle = '#ffffff';
-                this.ctx.shadowColor = 'rgb(0,0,0,0.5)';
+                this.ctx.shadowColor = 'rgb(0,0,0,0.7)';
                 this.ctx.shadowOffsetX = 0.5;
                 this.ctx.shadowOffsetY = 0.5;
                 this.ctx.shadowBlur = 5;
@@ -674,7 +690,7 @@ class Engine {
             this.score = this.score + 1000;
 
             this.ctx.fillStyle = '#ffffff';
-            this.ctx.shadowColor = 'rgb(0,0,0,0.5)';
+            this.ctx.shadowColor = 'rgb(0,0,0,0.7)';
             this.ctx.shadowOffsetX = 0.5;
             this.ctx.shadowOffsetY = 0.5;
             this.ctx.shadowBlur = 5;
@@ -697,13 +713,13 @@ class Engine {
 
         else if (!this.isPlayerDead()) {
 
-            this.player.spriteDead = this.player.sprite1;
+            //this.player.spriteDead = this.player.sprite1;
             //document.removeEventListener('click', gameLoop)
             // If player is not dead, then draw the score
             this.ctx.font = 'bold 18px Helvetica';
             this.ctx.fillStyle = '#ffffff';
 
-            this.ctx.shadowColor = 'rgb(0,0,0,0.5)';
+            this.ctx.shadowColor = 'rgb(0,0,0,0.7)';
             this.ctx.shadowOffsetX = 0.5;
             this.ctx.shadowOffsetY = 0.5;
             this.ctx.shadowBlur = 5;
@@ -729,6 +745,7 @@ class Engine {
         var self = this;
 
         return this.enemies.some(function (enemy) {
+           // this.player.imgSelector = 'spriteDead';
             return (enemy.x === self.player.x && enemy.y + ENEMY_HEIGHT >= self.player.y + 20)
                 && (enemy.y < self.player.y) + ENEMY_HEIGHT - 100;
 
