@@ -220,8 +220,8 @@ class Player {
         this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
         this.sprite1 = images['player.png'];
         this.sprite2 = images['player2.png'];
-        this.sprite3 = images['heart.png'];
-        this.sprite4 = images['playerdead.png'];
+        this.spriteDead = images['playerdead.png'];
+
         this.spriteLeft1 = images['moveLeft1.png'];
         this.spriteRight1 = images['moveRight1.png'];
         this.spriteLeft2 = images['moveLeft2.png'];
@@ -580,7 +580,8 @@ class Engine {
             
             if (lives === 2) {
 
-                this.player.sprite1 = this.player.sprite4;
+                this.player.sprite1 = this.player.spriteDead;
+
                 eww.play()
                 delete this.heart1[0]
                 document.removeEventListener('click', this.gameLoop)
@@ -606,7 +607,7 @@ class Engine {
             }
             
             if (lives === 1) {
-                this.player.sprite1 = this.player.sprite4;
+                this.player.sprite1 = this.player.spriteDead;
                 eww.play()
                 delete this.heart1[1]
                 this.ctx.fillStyle = '#ffffff';
@@ -633,7 +634,8 @@ class Engine {
             }
 
             if (lives === 0) {
-                this.player.sprite1 = this.player.sprite4;
+                this.player.sprite1 = this.player.spriteDead;
+
                 eww.play()
 
                 delete this.heart1[2]
@@ -695,7 +697,7 @@ class Engine {
 
         else if (!this.isPlayerDead()) {
 
-            this.player.sprite4 = this.player.sprite1
+            this.player.spriteDead = this.player.sprite1;
             //document.removeEventListener('click', gameLoop)
             // If player is not dead, then draw the score
             this.ctx.font = 'bold 18px Helvetica';
