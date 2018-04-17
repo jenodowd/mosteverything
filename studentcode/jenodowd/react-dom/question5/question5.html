@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+ <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+   <div id="root"></div>
+    <script>
+
+var quotes = ["quote 1", "quote 2", "quote 3", "quote 4", "quote 5"];
+
+class foo extends React.Component {
+    
+    constructor() {
+        super();
+        this.state = { quote: "" }
+        
+        //{ quote: quotes[1] }
+    }
+    render() {
+        return React.createElement("div", null,
+            React.createElement("div", null, this.state.quote,
+            React.createElement("div", null, 
+            React.createElement("button", 
+            { onClick: () =>
+                this.setState({ quote: quotes[Math.floor(Math.random()*quotes.length)] }) },
+            "GET QUOTE")
+            )));   
+    }
+ }
+
+ var rootdiv = document.getElementById('root');
+ ReactDOM.render(React.createElement(foo, null), rootdiv);
+
+
+    </script>
+</body>
+</html>
