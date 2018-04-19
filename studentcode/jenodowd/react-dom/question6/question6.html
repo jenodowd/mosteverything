@@ -19,7 +19,7 @@ class foo extends React.Component {
     constructor() {
         super();
         this.state = {time: ""};
-        setInterval(() => this.setState({time: new Date().toLocaleString()}), 1000)
+        setInterval(() => this.setState({time: new Date().toLocaleTimeString()}), 1000)
     }
     render() {
         return React.createElement("div", null, this.state.time);   

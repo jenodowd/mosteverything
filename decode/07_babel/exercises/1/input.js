@@ -4,10 +4,6 @@ var rootdiv = document.getElementById('root');
 //   null,
 //   ' hello world '
 // );
-var elem = React.createElement(
-  'h1',
-  null,
-  'Hello World'
-);
+var elem = <h1>Hello World</h1>
 
 ReactDOM.render(elem, rootdiv);

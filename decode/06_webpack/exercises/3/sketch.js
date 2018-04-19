@@ -1,5 +1,7 @@
 import p5 from 'p5';
+import setup from './setup';
 import renderWave from './renderwave.js';
+
 
 
 var xspacing = 16;    // Distance between each horizontal location
@@ -28,3 +30,4 @@ const sketch = (p5) => {
     }
 }
 
+export default sketch 

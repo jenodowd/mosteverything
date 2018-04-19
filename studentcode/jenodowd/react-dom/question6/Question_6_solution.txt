@@ -1,0 +1,18 @@
+function timeString() {
+            return new Date().toLocaleTimeString()
+        }
+        class Time extends React.Component {
+            constructor() {
+                super();
+                this.state = { currentTime: timeString() }
+                setInterval(
+                    () => this.setState({ currentTime: timeString() }),
+                    1000)
+            }
+            render() {
+                return React.createElement("div", null, this.state.currentTime)
+            }
+        }
+        var rootdiv = document.getElementById('root');
+        var elem = React.createElement(Time);
+        ReactDOM.render(elem, rootdiv);
