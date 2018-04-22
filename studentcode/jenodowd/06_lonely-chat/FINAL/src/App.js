@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Chat from './chat.js'
 import logo from './logo.png'
+import bob from './bob.png'
 
 class App extends Component {
 
@@ -33,20 +34,23 @@ class App extends Component {
     render() {
         return (
             <div>
-                <div className="topBanner"><img width="220px" src={logo} alt={logo}  ></img></div>
+                <div className="topBanner"><img width="250px" src={logo} alt={logo}  ></img></div>
                 <div className="changeChat">
                     <div className="user">
                         {this.state.switch ?
                             <div>
-                                User Name: <input className="userInput" type="text" value={this.state.user} onChange={this.changeUserName} /><br /><button className="userButton" onClick={this.toggle}>START CHATTING</button>
+                                <p>User Name: </p><input className="userInput" type="text" value={this.state.user} onChange={this.changeUserName} /><br /><button className="userButton" onClick={this.toggle}>START CHATTING</button>
                             </div>
                             :
                             <div>
                                 Welcome <h2>{this.state.user}!</h2> <br /><button className="userButton" onClick={this.toggle}>CHANGE USER NAME</button>
                             </div>}
                     </div>
-                    <button className="button" onClick={this.chatBob}>Add Bob</button>
-                    <button className="button" onClick={this.chatFred}>Add Fred</button>
+                    <hr />
+                    <button className="button bob" onClick={this.chatBob}>Talk to Bob <bold className="plus">+</bold></button>
+                    <hr />
+                    <button className="button fred" onClick={this.chatFred}>Talk to Fred <bold className="plus">+</bold></button>
+                    <hr />
                 </div>
 
                 <div>
