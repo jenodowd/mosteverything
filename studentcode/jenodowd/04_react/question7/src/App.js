@@ -6,7 +6,7 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = {input: 0}
+    this.state = {input: null}
   }
 
   getInput = () => {
