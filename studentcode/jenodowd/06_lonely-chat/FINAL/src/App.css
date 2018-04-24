@@ -7,7 +7,7 @@ body {
   background-color: #ffdbd9;
   margin: 0;
   padding: 0;
-  min-width: 800px;
+  min-width: 900px;
 }
 
 .topBanner {
@@ -22,7 +22,7 @@ body {
 
 .changeChat {
   padding: 2%;
-  min-width: 250px;
+  min-width: 270px;
   width: 25%;
   height: 110vh;
   float: left;
@@ -96,7 +96,7 @@ body {
   min-width: 500px;
   display: flex;
   justify-content: center;
-  height: 71vh;
+  height: 70.5vh;
   overflow: scroll;
 }
 
@@ -104,7 +104,7 @@ body {
   min-width: 500px;
   display: flex;
   justify-content: center;
-  height: 71vh;
+  height: 70.5vh;
   overflow: scroll;
 }
 

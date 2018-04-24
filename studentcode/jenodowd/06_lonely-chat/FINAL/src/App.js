@@ -43,7 +43,7 @@ class App extends Component {
                             </div>
                             :
                             <div>
-                                Welcome <h2>{this.state.user}!</h2> <br /><button className="userButton" onClick={this.toggle}>CHANGE USER NAME</button>
+                                <p>Welcome</p> <h2>{this.state.user}!</h2> <br /><button className="userButton" onClick={this.toggle}>CHANGE USER NAME</button>
                             </div>}
                     </div>
                     <hr />
