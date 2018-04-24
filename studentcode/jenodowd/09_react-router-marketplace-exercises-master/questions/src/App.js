@@ -5,6 +5,10 @@ import Details from './Details.js'
 import Item from './Item.js'
 import './App.css';
 
+// let reviews = [
+//   {reviewer: "Jack", text: "great"}
+// ];
+
 let items = [{
   description: "Nice boats. 50% off. wow.",
   price: '$10000',
@@ -35,7 +39,7 @@ let items = [{
   stock: 10 + " left",
   image: "mug.jpg",
   sellerId: 2,
-  detailId: 0
+  detailId: 3
 },
 {
   description: "table",
@@ -43,7 +47,8 @@ let items = [{
   stock: 1 + " left",
   image: "table.jpg",
   sellerId: 2,
-  detailId: 1
+  detailId: 4,
+  // reviews: [0]
 }
 ]
 
@@ -66,13 +71,11 @@ let renderSeller = routerData => {
 }
 
 let renderDetails = routerData => {
-  // the .id is the same as the :id from the Route below. 
-  // You can give it any name, but they have to match.
-  // For example, routerData.match.params.uniqueID would be fine too
-  // But you would have to modify the Route below to /seller/:uniqueID
+
   return (<Details id={routerData.match.params.id} />)
 
 }
+
 
 class App extends Component {
   render() {
