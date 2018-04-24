@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter, Link } from 'react-router-dom'
 import Seller from './Seller.js'
+import Details from './Details.js'
 
 import './App.css';
 
@@ -12,6 +13,7 @@ class Item extends Component {
         <div>{this.props.price}</div>
         <div>{this.props.stock}</div>
         <Link to={"/seller/" + this.props.sellerId}> Link to seller </Link>
+        <Link to={"/details/" + this.props.detailId}> Link to details</Link>
       </div>
     </div>)
   }
