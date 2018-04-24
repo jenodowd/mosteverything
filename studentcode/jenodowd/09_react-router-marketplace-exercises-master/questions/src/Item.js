@@ -5,6 +5,7 @@ import Details from './Details.js'
 
 import './App.css';
 
+
 class Item extends Component {
   render() {
     return (<div className="card center ">
@@ -13,6 +14,7 @@ class Item extends Component {
         <div>{this.props.price}</div>
         <div>{this.props.stock}</div>
         <Link to={"/seller/" + this.props.sellerId}> Link to seller </Link>
+        <br />
         <Link to={"/details/" + this.props.detailId}> Link to details</Link>
       </div>
     </div>)

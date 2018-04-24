@@ -4,53 +4,54 @@ import Seller from './Seller.js'
 import Details from './Details.js'
 import Item from './Item.js'
 import './App.css';
-
-// let reviews = [
-//   {reviewer: "Jack", text: "great"}
-// ];
+import Reviewer from './Reviewer.js';
+import {x} from "./Seller.js"
+//////////////////
+console.log(x)
 
 let items = [{
-  description: "Nice boats. 50% off. wow.",
-  price: '$10000',
-  stock: 1 + " left",
-  image: "boat.png",
-  sellerId: 0,
-  detailId: 0
-},
-{
-  description: "Lawn chairs",
-  price: '$50',
-  stock: 2 + " left",
-  image: "lawnchair.jpg",
-  sellerId: 1,
-  detailId: 1
-},
-{
-  description: "Chair",
-  price: '$50',
-  stock: 4 + " left",
-  image: "chair.jpg",
-  sellerId: 2,
-  detailId: 2
-},
-{
-  description: "Mug",
-  price: '$5',
-  stock: 10 + " left",
-  image: "mug.jpg",
-  sellerId: 2,
-  detailId: 3
-},
-{
-  description: "table",
-  price: '$150',
-  stock: 1 + " left",
-  image: "table.jpg",
-  sellerId: 2,
-  detailId: 4,
-  // reviews: [0]
-}
+    description: "Nice boats. 50% off. wow.",
+    price: '$10000',
+    stock: 1 + " left",
+    image: "boat.png",
+    sellerId: 0,
+    detailId: 0
+  },
+  {
+    description: "Lawn chairs",
+    price: '$50',
+    stock: 2 + " left",
+    image: "lawnchair.jpg",
+    sellerId: 1,
+    detailId: 1
+  },
+  {
+    description: "Chair",
+    price: '$50',
+    stock: 4 + " left",
+    image: "chair.jpg",
+    sellerId: 2,
+    detailId: 2
+  },
+  {
+    description: "Mug",
+    price: '$5',
+    stock: 10 + " left",
+    image: "mug.jpg",
+    sellerId: 2,
+    detailId: 3
+  },
+  {
+    description: "table",
+    price: '$150',
+    stock: 1 + " left",
+    image: "table.jpg",
+    sellerId: 2,
+    detailId: 4,
+    // reviews: [0]
+  }
 ]
+
 
 let renderAllItems = () => {
   return items.map(item => (<Item
@@ -71,13 +72,27 @@ let renderSeller = routerData => {
 }
 
 let renderDetails = routerData => {
-
   return (<Details id={routerData.match.params.id} />)
+}
+
+let renderReviewer = routerData => {
+  console.log(routerData)
+  console.log(this.props)
+  return (
+    <Reviewer
+      id={routerData.match.params.id}
+    />
+  )
 
 }
 
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+    }
+  }
   render() {
     return (
       <BrowserRouter>
@@ -85,6 +100,7 @@ class App extends Component {
           <Route exact={true} path='/' render={renderAllItems} />
           <Route exact={true} path='/seller/:id' render={renderSeller} />
           <Route exact={true} path='/details/:id' render={renderDetails} />
+          <Route exact={true} path='/reviewer/:id' render={renderReviewer} />
         </div>
       </BrowserRouter>
 

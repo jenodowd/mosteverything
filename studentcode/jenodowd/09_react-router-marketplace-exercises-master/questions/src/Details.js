@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Reviewer from './Reviewer.js'
+import Reviewer from './Reviewer.js';
+import { Link } from 'react-router-dom'
 
 let details = [{
   info: "Here is some product info",
@@ -25,41 +26,64 @@ let details = [{
 ]
 
 
-let reviews = [
+var reviews = [
   {
     name: 'Jack',
-    review: 'great'
+    authorId : 0,
+    review: 'great',
   },
   {
     name: "Joe",
+    authorId : 1,
     review: "good",
   },
   {
     name: "Bob",
+    authorId : 2,
     review: "awesome!",
   },
   {
     name: "Fred",
+    authorId : 3,
     review: "ok",
   },
   {
     name: "Jane",
+    authorId : 4,
     review: "ok",
   },
   {
     name: "Lucy",
+    authorId : 5,
     review: "not bad",
+  },
+  {
+    name: "Jack",
+    authorId : 0,
+    review: "really bad",
   },
 ]
 
 
 let formatDetails = (details) => {
+
+var reviewsListJSX = details.reviews.map((reviewID) => {
+  return (
+    <div> 
+      Name:
+     <Link to={"/reviewer/" + reviews[reviewID].authorId}> {reviews[reviewID].name} </Link>
+      <br/>
+      Review:{reviews[reviewID].review}
+      <hr/>
+    </div>
+    )
+  })
+
   return (<div className="card center">
     <div>
       <div>{details.info}</div>
       <br />
-      <div>{ details.reviews.map(reviewID => <div> {`Name: ${reviews[reviewID].name}
-        Review: ${reviews[reviewID].review}`} </div>) }
+      <div>{ reviewsListJSX }
         <br />
       </div>
     </div>

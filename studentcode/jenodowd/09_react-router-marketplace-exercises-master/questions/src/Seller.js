@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 let sellers = [{
   name: "Jack Frost",
-  rating: "5 stars"
+  rating: "5 stars",
 },
 {
   name: "Hank Green",
@@ -15,20 +15,20 @@ let sellers = [{
   rating: "4 stars"
 },
 ]
-
-let formatSeller = (seller) => {
-  return (<div className="card center">
-    <div>
-      <div>{seller.name}</div>
-      <div>{seller.rating}</div>
-    </div>
-  </div>)
-}
+//////////////////
+export var x = "A"
 
 class Seller extends Component {
   render() {
     return (
-      <div>{formatSeller(sellers[this.props.id])}</div>
+      <div>
+        <div className="card center">
+          <div>
+            <div>{sellers[this.props.id].name}</div>
+            <div>{sellers[this.props.id].rating}</div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

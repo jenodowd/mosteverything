@@ -1,46 +1,88 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
+var reviews = [
+  {
+    name: 'Jack',
+    authorId : 0,
+    review: 'great',
+  },
+  {
+    name: "Joe",
+    authorId : 1,
+    review: "good",
+  },
+  {
+    name: "Bob",
+    authorId : 2,
+    review: "awesome!",
+  },
+  {
+    name: "Fred",
+    authorId : 3,
+    review: "ok",
+  },
+  {
+    name: "Jane",
+    authorId : 4,
+    review: "ok",
+  },
+  {
+    name: "Lucy",
+    authorId : 5,
+    review: "not bad",
+  },
+  {
+    name: "Jack",
+    authorId : 0,
+    review: "really bad",
+  },
+]
+
 let reviewer = [{
   name: "Jack",
-  review: [0, 2]
+  reviewList : [0,6],
 },
 {
   name: "Joe",
-  review: "good",
+  reviewList : [1],
 },
 {
   name: "Bob",
-  review: "awesome!",
+  reviewList : [2],
 },
 {
   name: "Fred",
-  review: "ok",
+  reviewList : [3],
 },
 {
   name: "Jane",
-  review: "ok",
+  reviewList : [4],
 },
 {
   name: "Lucy",
-  review: "not bad",
-},
-
-]
-
-let formatDetails = (reviewer) => {
-  return (<div className="card center">
-    <div>
-      <div>{reviewer.name}: {reviewer.review}</div>
-    </div>
-  </div>)
+  reviewList : [5], 
 }
-
+]
 
 class Reviewer extends Component {
   render() {
+    console.log(this.props)
+    console.log(reviewer[Number(this.props.id)].reviewList)
+    var tempArray = reviewer[Number(this.props.id)].reviewList
+    var reviewsJSX = tempArray.map((el)=>{
+      return(
+        <div>
+          item : 
+          {reviews[el].review}
+          <hr/>
+        </div>
+      )
+    })
+
     return (
-      <div>{formatDetails(reviewer[this.props.id])}</div>
+      <div>{reviewsJSX}</div>
     );
   }
 }
