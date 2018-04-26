@@ -6,6 +6,7 @@ import Item from './Item.js'
 import './App.css';
 import Reviewer from './Reviewer.js';
 import {x} from "./Seller.js"
+import {sellers} from './Seller.js'
 //////////////////
 console.log(x)
 
@@ -63,6 +64,26 @@ let renderAllItems = () => {
     description={item.description} />))
 }
 
+let renderAllSellers = () => {
+  return (<div>
+    {sellers[0].name + " " + sellers[0].rating}
+    <br />
+    <Link to={"/seller/" + 0}>Shop</Link>
+    <br />
+    <br />
+    {sellers[1].name + " " + sellers[1].rating}
+    <br />
+    <Link to={"/seller/" + 1}>Shop</Link>
+    <br />
+    <br />
+    {sellers[2].name + " " + sellers[2].rating}
+    <br />
+    <Link to={"/seller/" + 2}>Shop</Link>
+    </div>)
+}
+
+
+
 let renderSeller = routerData => {
   // the .id is the same as the :id from the Route below. 
   // You can give it any name, but they have to match.
@@ -76,8 +97,6 @@ let renderDetails = routerData => {
 }
 
 let renderReviewer = routerData => {
-  console.log(routerData)
-  console.log(this.props)
   return (
     <Reviewer
       id={routerData.match.params.id}
@@ -86,21 +105,26 @@ let renderReviewer = routerData => {
 
 }
 
-
 class App extends Component {
-
+  constructor() {
+    super()
+    this.state = {
+    }
+  }
   render() {
-
     return (
       <BrowserRouter>
         <div>
+          {/* <Route exact={true} path='/seller' render={renderAllSellers} /> */}
+          <Link to = {"/sellers"}>Sellers</Link>
           <Route exact={true} path='/' render={renderAllItems} />
+          <Route exact={true} path='/sellers' render={renderAllSellers} />
           <Route exact={true} path='/seller/:id' render={renderSeller} />
           <Route exact={true} path='/details/:id' render={renderDetails} />
           <Route exact={true} path='/reviewer/:id' render={renderReviewer} />
+          {/* <div>{renderAllSellers}</div> */}
         </div>
       </BrowserRouter>
-
     );
   }
 }

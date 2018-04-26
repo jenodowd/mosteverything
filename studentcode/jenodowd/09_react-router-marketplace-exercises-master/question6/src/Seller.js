@@ -5,7 +5,7 @@ import {items} from './App.js'
 import Item from './Item.js'
 
 
-let sellers = [{
+export let sellers = [{
   name: "Jack Frost",
   rating: "5 stars",
 },
@@ -24,13 +24,9 @@ export var x = "A"
 
 
 
-
-
 class Seller extends Component {
 
   render() {
-    console.log(this.props)
-    console.log(items)
 
     var sellerId = this.props.id
 
@@ -42,7 +38,7 @@ class Seller extends Component {
     var renderAllItems = itemsBySeller.map(item => (<Item
         price={item.price}
         stock={item.stock}
-        sellerId={item.sellerId}
+        // sellerId={item.sellerId}
         detailId={item.detailId}
         imageLocation={item.image}
         description={item.description} />))
