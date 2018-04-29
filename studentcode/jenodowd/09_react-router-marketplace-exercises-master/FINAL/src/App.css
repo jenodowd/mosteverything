@@ -1,3 +1,5 @@
+html,body { height:100%; }
+
 /* NAV */
 
 .navContainer {
@@ -29,7 +31,7 @@
 .sideNavContainer {
   float: left;
   width: 200px;
-  height: 200vh;
+  height: 140vh;
   margin: 0;
   padding: 0;
 }
@@ -38,6 +40,7 @@
   display: block;
   list-style-type: none;
   text-decoration: none;
+  margin-top: 25px;
 }
 
 .sideNavTitle {
@@ -56,6 +59,20 @@
   vertical-align: 15px;
 }
 
+.sideSubLink {
+  font-family: Avenir;
+  font-size: 10pt;
+  text-decoration: none;
+  color: black;
+  vertical-align: 15px;
+  /* margin-left: 10px; */
+}
+
+.sideLI{
+  display: block;
+  list-style-type: none;
+  text-decoration: none;
+}
 
 /* ITEMS */
 
@@ -75,4 +92,81 @@
   min-width: 250px;
   max-width: 400px;
   padding: 10px;
+  text-align: center;
+  font-family: Avenir;
+  font-size: 10pt;
+}
+
+.itemTitle {
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.itemLink {
+  text-decoration: none;
+  color: black;
+}
+
+/* DETAILS */
+
+.details {
+  display: flex;
+  margin-left: 230px;
+}
+
+.itemInfo {
+  margin-left: 50px;
+  font-family: Avenir;
+  font-size: 10pt;
+}
+
+.description {
+  font-family: Avenir;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.reviews {
+  font-family: Avenir;
+  font-size: 10pt;
+}
+
+.reviewLink {
+  color: black;
+}
+
+/* New Arrivals */
+
+.newArrivals {
+  max-height: 100vh;
+}
+
+/* All Sellers */
+
+.allsellers {
+  margin-left: 230px;
+  font-family: Avenir;
+  font-size: 12pt;
+  font-weight: bold;
+  color: black;
+}
+
+.sellers {
+  margin-left: 230px;
+  font-family: Avenir;
+  font-size: 12pt;
+  color: black;
+}
+
+.sellerName {
+  font-family: Avenir;
+  font-size: 12pt;
+  font-weight: bold;
+  color: black;
+}
+
+.sellersLink {
+  font-family: Avenir;
+  font-size: 12pt;
+  color: black;
 }

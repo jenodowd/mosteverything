@@ -8,9 +8,9 @@ class Item extends Component {
     return (
       <div className="center">
         <Link to={"/details/" + this.props.itemId}><img src={this.props.imageLocation} alt="useruploadeditem" /></Link>
-          <div>{this.props.description}</div>
-          <div>{this.props.price}</div>
-          <Link to={"/seller/" + this.props.sellerId}> Link to seller </Link>
+          <div className = "itemTitle">{this.props.description}</div>
+          <div>${this.props.price}</div>
+          <Link className="itemLink" to={"/seller/" + this.props.sellerId}> Link to seller </Link>
       </div>
           )
         }

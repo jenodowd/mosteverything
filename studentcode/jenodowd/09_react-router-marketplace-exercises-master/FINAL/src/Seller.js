@@ -9,7 +9,7 @@ let itemBySeller = (id) => {
   for (var i = 0; i < items.length; i++) {
     if (Number(items[i].sellerId) === Number(id)) {
       tempArray.push(
-        <div><Link to = {'/details/' + items[i].itemId}> {items[i].description} </Link></div>
+        <div><Link className = "sellersLink" to = {'/details/' + items[i].itemId}> {items[i].description} </Link></div>
       )
     }
   } return tempArray;
@@ -17,9 +17,9 @@ let itemBySeller = (id) => {
 
 
 let formatSeller = (seller) => {
-  return (<div className="card center">
+  return (<div>
     <div>
-      <div>{seller.name}</div>
+      <div className="sellerName">{seller.name}</div>
       <div>{seller.rating}</div>
     </div>
   </div>)
@@ -28,8 +28,9 @@ let formatSeller = (seller) => {
 class Seller extends Component {
   render() {
     return (
-      <div>
+      <div className = "sellers">
       <div>{formatSeller(sellers[this.props.sellerId])}</div>
+      <br />
       <div>
         Items for sale: 
         <br />

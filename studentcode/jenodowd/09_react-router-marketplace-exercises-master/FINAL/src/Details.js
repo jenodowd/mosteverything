@@ -9,21 +9,24 @@ class Details extends Component {
 
   render() {
 
-    var reviewsJSX = items[this.props.itemId].reviews.map((el)=>{
+    var reviewsJSX = items[this.props.itemId].reviews.map((el) => {
       return (
-        <div>
-          <Link to = {'/reviewer/' + reviews[el].reviewerId}> {reviews[el].name} </Link>:
-          {reviews[el].text}
+        <div className = "reviews">
+          <Link className = "reviewLink" to={'/reviewer/' + reviews[el].reviewerId}>{reviews[el].name}</Link>:
+          &nbsp;{reviews[el].text}
         </div>
       )
     })
-    return(
-      <div>
-        <img src={"http://localhost:3000/"+items[this.props.itemId].image} alt="useruploadeditem" />
+    return (
+      <div className = "details">
+        <img src={"http://localhost:3000/" + items[this.props.itemId].biggerImage} alt="useruploadeditem" />
+        <div className = "itemInfo">
+        <div className = "description">{items[this.props.itemId].description}</div>
+        <div>${items[this.props.itemId].price}</div>
         <br />
-        {items[this.props.itemId].description}
-        <br />
+        <div>Reviews:</div>
         {reviewsJSX}
+        </div>
       </div>
     )
   }
