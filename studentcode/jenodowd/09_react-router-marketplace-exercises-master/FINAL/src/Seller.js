@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 let itemBySeller = (id) => {
   var tempArray = [];
   for (var i = 0; i < items.length; i++) {
-    if (items[i].sellerId == id) {
+    if (Number(items[i].sellerId) === Number(id)) {
       tempArray.push(
         <div><Link to = {'/details/' + items[i].itemId}> {items[i].description} </Link></div>
       )

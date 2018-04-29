@@ -1,0 +1,14 @@
+What is the output of this program?
+Don't run it, try to figure it out by yourself first without the help of a computer.
+
+var description = {123: "a nice jacket", 456 : "a boat"}
+var price = {123: 10, 456 : 10000}
+
+var both = {}
+
+for(var k in description) {
+    both[k] = {description: description[k], price: price[k]};
+}
+
+console.log(both[123]["description"])
+console.log(both[456].price)

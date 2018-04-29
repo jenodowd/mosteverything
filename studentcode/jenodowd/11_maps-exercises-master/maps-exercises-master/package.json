@@ -1,0 +1,18 @@
+{
+  "name": "maps-exercises",
+  "version": "1.0.0",
+  "description": "Good luck :)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@decodegithub:decodejacques/maps-exercises.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1"
+  }
+}

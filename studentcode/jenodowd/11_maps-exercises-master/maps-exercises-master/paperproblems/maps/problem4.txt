@@ -1,0 +1,14 @@
+What is the output of this program?
+Don't run it, try to figure it out by yourself first without the help of a computer.
+
+var address = {"jack": "123 somestreet", "jane" : "456 otherstreet"}
+var age = {"jack": 23, "jane": 28}
+
+var both = {}
+
+for(var k in address) {
+    both[k] = {address: address[k], age: age[k]};
+}
+
+console.log(both["jack"].age)
+console.log(both.jane["address"])

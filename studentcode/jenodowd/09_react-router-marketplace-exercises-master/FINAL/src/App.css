@@ -1,0 +1,39 @@
+/* NAV */
+
+.navContainer {
+  margin: 25px;
+}
+
+.navUL {
+  display: inline;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.navLI {
+  display: inline;
+}
+
+.link {
+  font-family: Avenir;
+  font-size: 14pt;
+  text-decoration: none;
+  color: black;
+  vertical-align: 14px;
+}
+
+/* ITEMS */
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 25px;
+}
+
+.center {
+  flex-grow: 1;
+  display: inline-block;
+  min-width: 250px;
+  max-width: 250px;
+  padding: 10px;
+}
