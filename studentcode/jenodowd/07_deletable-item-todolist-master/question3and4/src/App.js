@@ -14,7 +14,8 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({ items: this.state.items.concat(this.state.textEntered) })
+    let newItem = { description: this.state.textEntered, highlighted: false }
+    this.setState({ items: this.state.items.concat(newItem) })
   }
 
   itemDeleter = ind => {
@@ -43,13 +44,24 @@ class App extends Component {
   //   this.setState({ items: newArr });
   // }
 
-  makeItem = (text, ind) => {
+  highlight = ind => {
+    // this.state.items[ind].highlighted = !this.state.items[ind].highlighted;
+    // this.setState({items: this.state.items})
+    let newItems = this.state.items.slice();
+    newItems[ind] = { ...newItems[ind] } //object copy
+    newItems[ind].highlighted = !newItems[ind].highlighted;
+    this.setState({items: newItems})
+  }
+
+  makeItem = (obj, ind) => {
     return (<TodoItem
       deleteItem={this.itemDeleter}
       swapItem={this.swapElements}
       //moveUp={this.moveUp}
       arr={this.state.items}
-      description={text}
+      description={obj.description}
+      highlighted={obj.highlighted}
+      highlight={this.highlight}
       index={ind} />)
   }
 
@@ -57,7 +69,7 @@ class App extends Component {
     return (
       <div className="App">
         <ul>
-          {this.state.items.map((itemText, index) => this.makeItem(itemText, index))}
+          {this.state.items.map((obj, index) => this.makeItem(obj, index))}
         </ul>
         <form onSubmit={this.handleSubmit}>
           <input type="text" onChange={this.handleChange} value={this.state.textEntered} />

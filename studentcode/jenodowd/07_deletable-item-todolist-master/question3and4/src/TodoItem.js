@@ -3,17 +3,13 @@ import './App.css';
 
 class TodoItem extends Component {
 
-  constructor() {
-    super()
-    this.state = { color: "black" }
-  }
-
   removeSelf = () => {
     this.props.deleteItem(this.props.index);
   }
 
   highlight = () => {
-    this.setState({ color: "red" })
+    this.props.highlight(this.props.index)
+
   }
 
   moveToTop = () => {
@@ -25,9 +21,10 @@ class TodoItem extends Component {
   }
 
   render() {
+    let color = this.props.highlighted ? "red" : "black"
     return (
-      <li>
-        <div style={{color: this.state.color}}>{this.props.description}</div>
+      <li style = {{color: color}}>
+        <div>{this.props.description}</div>
         <button onClick={this.removeSelf} style={{ "margin-left": "20px" }}>
           delete
           </button>

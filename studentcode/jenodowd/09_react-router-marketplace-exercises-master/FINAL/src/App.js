@@ -5,25 +5,25 @@ import Item from './Item.js'
 import Details from './Details.js'
 import Reviewer from './Reviewer.js'
 import Navigation from './Navigation.js'
+import SideNav from './SideNav.js'
 import { items } from './Data.js'
 import { sellers } from './Data.js'
 import './App.css';
 
 let renderAllItems = () => {
   return <div>
-    <Navigation />
-    <div className = "items">
-    {
-    items.map(item => (   
-    <Item
-    price={item.price}
-    sellerId={item.sellerId}
-    itemId={item.itemId}
-    imageLocation={item.image}
-    description={item.description} />
-    ))}
+    <SideNav />
+    <div className="items">
+      {items.map(item => (
+        <Item
+          price={item.price}
+          sellerId={item.sellerId}
+          itemId={item.itemId}
+          imageLocation={item.image}
+          description={item.description} />
+      ))}
     </div>
-    </div>
+  </div>
 }
 
 let renderSeller = routerData => {
@@ -39,13 +39,13 @@ let renderDetails = routerData => {
 }
 
 let renderReviewers = routerData => {
-  return (<Reviewer reviewerId={routerData.match.params.id}/>)
+  return (<Reviewer reviewerId={routerData.match.params.id} />)
 }
 
 let renderAllSellers = () => {
   var tempArray = []
-  for(var i = 0; i < sellers.length; i++) {
-   tempArray.push(<div><Link to = {'/seller/' + i}> {sellers[i].name} </Link></div>)
+  for (var i = 0; i < sellers.length; i++) {
+    tempArray.push(<div><Link to={'/seller/' + i}> {sellers[i].name} </Link></div>)
   } return tempArray;
 }
 
@@ -53,16 +53,16 @@ class App extends Component {
   render() {
     return (
       <div>
-      <BrowserRouter>
-        <div>
-          <Route exact={true} path='/' render={renderAllItems} />
-          <Route exact={true} path='/seller/:id' render={renderSeller} />
-          <Route exact={true} path='/details/:id' render={renderDetails} />
-          <Route exact={true} path='/reviewer/:id' render={renderReviewers} />
-          <Route exact={true} path='/allsellers/' render={renderAllSellers} />
-        </div>
-      </BrowserRouter>
-      
+        <BrowserRouter>
+          <div>
+            <Navigation />
+            <Route exact={true} path='/' render={renderAllItems} />
+            <Route exact={true} path='/seller/:id' render={renderSeller} />
+            <Route exact={true} path='/details/:id' render={renderDetails} />
+            <Route exact={true} path='/reviewer/:id' render={renderReviewers} />
+            <Route exact={true} path='/allsellers/' render={renderAllSellers} />
+          </div>
+        </BrowserRouter>
       </div>
     );
   }

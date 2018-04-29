@@ -1,10 +1,12 @@
 /* NAV */
 
 .navContainer {
-  margin: 25px;
+  margin: 40px;
+  margin-bottom: 50px;
 }
 
 .navUL {
+  margin-left: 20px;
   display: inline;
   list-style-type: none;
   text-decoration: none;
@@ -16,24 +18,61 @@
 
 .link {
   font-family: Avenir;
-  font-size: 14pt;
+  font-size: 12pt;
   text-decoration: none;
   color: black;
-  vertical-align: 14px;
+  vertical-align: 16px;
 }
+
+/* SIDENAV */
+
+.sideNavContainer {
+  float: left;
+  width: 200px;
+  height: 200vh;
+  margin: 0;
+  padding: 0;
+}
+
+.sideNavLI {
+  display: block;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.sideNavTitle {
+  font-size: 10pt;
+  list-style-type: none;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.sidelink {
+  font-family: Avenir;
+  font-size: 10pt;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  vertical-align: 15px;
+}
+
 
 /* ITEMS */
 
 .items {
-  display: flex;
+  margin-left: 250px;
+  display: inline;
   flex-wrap: wrap;
-  margin: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 .center {
+  margin: 25px;
+  margin-top: 0;
   flex-grow: 1;
   display: inline-block;
   min-width: 250px;
-  max-width: 250px;
+  max-width: 400px;
   padding: 10px;
 }

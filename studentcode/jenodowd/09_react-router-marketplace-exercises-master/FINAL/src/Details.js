@@ -19,6 +19,8 @@ class Details extends Component {
     })
     return(
       <div>
+        <img src={"http://localhost:3000/"+items[this.props.itemId].image} alt="useruploadeditem" />
+        <br />
         {items[this.props.itemId].description}
         <br />
         {reviewsJSX}
