@@ -35,7 +35,7 @@ let renderNewArrivals = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -58,7 +58,7 @@ let under50 = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -80,7 +80,7 @@ let under100 = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -103,7 +103,7 @@ let under200 = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -125,7 +125,7 @@ let pink = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -147,7 +147,7 @@ let blue = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -169,7 +169,7 @@ let white = () => {
   }
   return <div>
   <SideNav />
-  <div className="newArrivals">
+  <div>
     {tempArray.map(item => (
       <Item
         price={item.price}
@@ -206,34 +206,48 @@ let renderAllSellers = () => {
   } return tempArray;
 }
 
-let sortByPrice = () => {
-  //TEST:
-  // var price = [];
-  // var sort = [];
-  // for (var i = 0; i < items.length; i++) {
-  //    price.push(<div>{items[i].price}</div>)
-  // } 
-  // for (var ii = 0; ii < price.length; ii++) {
-  //   sort.push(price[ii].props.children)
-  // }
-  // return sort.sort(function(a, b){return a-b});
 
+let lowToHigh= () => {
+  var newItems = items.slice();
+  newItems.sort(function(obj1, obj2) {
+    return obj1.price - obj2.price;
+  })
   return <div>
     <SideNav />
-    <div className="items">
-      {items.map(item => (
+    <div>
+      {newItems.map(item => (
       <Item
         price={item.price}
         sellerId={item.sellerId}
         itemId={item.itemId}
         imageLocation={item.image}
         description={item.description} />
-      )).sort(function(a, b){a.price-b.price})}
+      ))}
       
   </div>
   </div>
 }
 
+let highToLow = () => {
+  var newItems = items.slice();
+  newItems.sort(function(obj1, obj2) {
+    return obj2.price - obj1.price;
+  })
+  return <div>
+    <SideNav />
+    <div>
+      {newItems.map(item => (
+      <Item
+        price={item.price}
+        sellerId={item.sellerId}
+        itemId={item.itemId}
+        imageLocation={item.image}
+        description={item.description} />
+      ))}
+      
+  </div>
+  </div>
+}
 
 class App extends Component {
   render() {
@@ -253,7 +267,8 @@ class App extends Component {
             <Route exact={true} path='/seller/:id' render={renderSeller} />
             <Route exact={true} path='/details/:id' render={renderDetails} />
             <Route exact={true} path='/reviewer/:id' render={renderReviewers} />
-            {/* <Route exact={true} path='/price/' render={sortByPrice} /> */}
+            <Route exact={true} path='/lowtohigh/' render={lowToHigh} />
+            <Route exact={true} path='/hightolow/' render={highToLow} />
             <Route exact={true} path='/allsellers/' render={renderAllSellers} />
           </div>
         </BrowserRouter>
