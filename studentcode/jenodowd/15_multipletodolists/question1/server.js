@@ -12,9 +12,16 @@ app.get('/app.js', (req, res) => res.send(fs.readFileSync('./public/app.js').toS
 
 // 
 let serverState = {
-    items: {}
+    items: {},
+    listName : "grocery list"
 }
 
+// app.post('/combined', (req, res) => {
+//     let parsedBody = JSON.parse(req.body.toString())
+//     serverState.items[parsedBody.listName] = []
+
+//     res.send(JSON.stringify(communication = "SUCCESS"));
+// })
 
 app.post('/clear', (req, res) => {
     //console.log(serverState)
@@ -41,6 +48,17 @@ app.post('/items', (req, res) => {
     if(!items) items = []
     console.log(serverState)
     res.send(JSON.stringify(items));
+})
+
+app.get('/getListName', (req,res) => {
+    res.send({listName : serverState.listName})
+})
+
+app.post('/changeListName', (req,res) => {
+    let parsedBody = JSON.parse(req.body.toString())
+    console.log(parsedBody)
+    serverState.listName = parsedBody.newListName;
+    res.send("SUCCESS")
 })
 
 app.post('/addItem', (req, res) => {

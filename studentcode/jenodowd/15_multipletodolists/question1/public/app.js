@@ -26,7 +26,8 @@ let state = {
     items: [],
     addItemInput: "", // The contents of the add item input box
     listNameInput: "", // The contents of the input box related to changing the list
-    listName: "grocery list"
+    listName: "",
+    importInput: ""
 }
 
 // Calling rerender changes the UI to reflect what's in the state
@@ -40,6 +41,7 @@ function rerender() {
 
     let listNameInputChanged = document.getElementById('listNameInputChanged')
     listNameInputChanged.value = state.listNameInput;
+
 
     let d = document.getElementById("items");
     d.innerHTML = '';
@@ -80,9 +82,11 @@ function addItemSubmit() {
 
 function listNameSubmit() {
     event.preventDefault();
-    setState({ listName: state.listNameInput })
-    populateItems(state.listName);
+    // setState({ listName: state.listNameInput })
+    // populateItems(state.listName);
+    fetch('/changeListName',{method:"POST", body: JSON.stringify({newListName : state.listNameInput}) })
     state.listNameInput = ""
+    getListName();
 }
 
 
@@ -127,7 +131,12 @@ function populateItems(listName) {
     makeHTTPRequest('POST', '/items', body, cb)
 }
 
-
+function getListName (){
+    fetch('getListName',{method:"GET"})
+    .then((e)=> {return e.text()})
+    .then((e) => {setState({listName :JSON.parse(e).listName })})
+}
 
 // We define a function and then call it right away. I did this to give the file a nice structure.
+getListName();
 populateItems(state.listName);
