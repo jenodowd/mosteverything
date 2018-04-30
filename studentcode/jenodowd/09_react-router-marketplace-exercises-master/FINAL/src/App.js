@@ -254,7 +254,7 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <div>
+          <div style={{height: "100%"}}>
             <Navigation />
             <Route exact={true} path='/' render={renderAllItems} />
             <Route exact={true} path='/newarrivals' render={renderNewArrivals} />

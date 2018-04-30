@@ -1,0 +1,19 @@
+<html>
+
+<body>
+    <form onSubmit="listNameSubmit()">
+        Change to this list: <input type="text" id="listNameInputChanged" onchange="nameInputChanged()" />
+        <input type="submit">
+    </form>
+    Showing list <span id="listName"></span>
+    <form onSubmit="addItemSubmit()">
+        Item to add <input type="text" id="itemInput" onchange="addItemInputChanged()" />
+        <input type="submit">
+    </form>
+    <button onClick= "clearList()" >Clear</button>
+    <button onClick= "reverseList()" >Reverse</button>
+    <ul id="items"></ul>
+    <script src="app.js"></script>
+</body>
+
+</html>
