@@ -31,7 +31,7 @@ html,body { height:100%; }
 .sideNavContainer {
   float: left;
   width: 200px;
-  /* height: 100vh; */
+  height: 200vh;
   margin: 0;
   padding: 0;
 }

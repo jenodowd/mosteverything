@@ -6,7 +6,7 @@ import './App.css';
 class SideNav extends Component {
   render() {
     return (
-      <div className = "sideNavContainer" style={{height : "100%"}}>
+      <div className = "sideNavContainer">
         <ul className="sideNavUL">
           <li className="sideNavTitle">Sort by:</li>
           <li className="sideNavLI"><Link className="sidelink" to={'/'}>Price</Link></li>
