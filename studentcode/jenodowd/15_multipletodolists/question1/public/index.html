@@ -10,14 +10,16 @@
         Item to add <input type="text" id="itemInput" onchange="addItemInputChanged()" />
         <input type="submit">
     </form>
+        List to import
+    <input type = "text" oninput="getImportInput()" id="importInput" />
+    <button onClick="importList()">submit</button><br/><br/><br/><br/>
     <button onClick= "clearList()" >Clear</button>
     <button onClick= "reverseList()" >Reverse</button>
     <br />
     <br />
-    <form>
-        <input type = "text" id="importInput" onchange="importInputChanged()" />
-        <input type = "submit" />
-    </form>
+
+
+
     <ul id="items"></ul>
     <script src="app.js"></script>
 </body>

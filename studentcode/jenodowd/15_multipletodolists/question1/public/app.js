@@ -2,6 +2,7 @@
 
 // Controlled input. This is similar to what you did in react.
 function addItemInputChanged() {
+    console.log("HEY")
     setState({ addItemInput: event.target.value });
 }
 
@@ -9,6 +10,15 @@ function addItemInputChanged() {
 function nameInputChanged() {
     setState({ listNameInput: event.target.value });
 }
+
+function getImportInput() {
+    //console.log("fffS")
+    console.log(event.target.value)
+    setState({ importInput: event.target.value });
+    console.log(state)
+}
+
+
 
 // Don't try to understand the body of this function. You just 
 // need to understand what each parameter represents
@@ -42,6 +52,8 @@ function rerender() {
     let listNameInputChanged = document.getElementById('listNameInputChanged')
     listNameInputChanged.value = state.listNameInput;
 
+    let importInput = document.getElementById('importInput')
+    importInput.value = state.importInput;
 
     let d = document.getElementById("items");
     d.innerHTML = '';
@@ -58,6 +70,7 @@ function setState(newState) {
     if (newState.addItemInput) state.addItemInput = newState.addItemInput;
     if (newState.listNameInput) state.listNameInput = newState.listNameInput;
     if (newState.listName) state.listName = newState.listName;
+    if (newState.importInput) state.importInput = newState.importInput;
     rerender();
 }
 
@@ -80,6 +93,17 @@ function addItemSubmit() {
     state.addItemInput = ""
 }
 
+
+function importList() {
+    event.preventDefault();
+    console.log(state)
+    fetch('/import', { method:"POST", body: JSON.stringify ( { ListToMerge : state.importInput } ) })
+    .then(e => e.text())
+    .then(e => console.log(e))
+    .then(populateItems(state.listName))
+}
+
+
 function listNameSubmit() {
     event.preventDefault();
     // setState({ listName: state.listNameInput })
@@ -87,6 +111,8 @@ function listNameSubmit() {
     fetch('/changeListName',{method:"POST", body: JSON.stringify({newListName : state.listNameInput}) })
     state.listNameInput = ""
     getListName();
+    console.log("AS")
+    populateItems(state.listName);
 }
 
 
@@ -135,8 +161,8 @@ function getListName (){
     fetch('getListName',{method:"GET"})
     .then((e)=> {return e.text()})
     .then((e) => {setState({listName :JSON.parse(e).listName })})
+    .then((e) => {populateItems(state.listName)})
 }
 
 // We define a function and then call it right away. I did this to give the file a nice structure.
 getListName();
-populateItems(state.listName);

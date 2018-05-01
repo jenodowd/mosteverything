@@ -54,6 +54,19 @@ app.get('/getListName', (req,res) => {
     res.send({listName : serverState.listName})
 })
 
+app.post('/import', (req, res) => {
+    let parsedBody = JSON.parse(req.body.toString())
+    console.log(parsedBody.ListToMerge)
+    if(serverState.items[parsedBody.ListToMerge]){
+        serverState.items[parsedBody.ListToMerge].forEach(element => {
+            serverState.items[serverState.listName].push(element) 
+        });
+    }
+    res.send("SUCCESS");
+})
+
+
+
 app.post('/changeListName', (req,res) => {
     let parsedBody = JSON.parse(req.body.toString())
     console.log(parsedBody)
