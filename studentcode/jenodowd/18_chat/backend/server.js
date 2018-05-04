@@ -8,17 +8,13 @@ let serverState = {
     messages: []
 }
 
-//let info = {}
-let info = {
-    // "jen": "12",
-    // "sim": "13"
-}
+let info = {}
 
 
-// try {
-//     info = JSON.parse(fs.readFileSync('../info.json').toString())
-//   } catch(err) {
-//   }
+try {
+    info = JSON.parse(fs.readFileSync('../info.json').toString())
+  } catch(err) {
+  }
 
 app.post('/createaccount', (req, res) => {
     let parsed = JSON.parse(req.body.toString());
@@ -29,11 +25,8 @@ app.post('/createaccount', (req, res) => {
     } else {
         info[username] = password;
     }
-    // //fs.writeFileSync('./info.json', JSON.stringify(info))
-    // fs.writeFileSync('../info.json', JSON.stringify(info), 'utf8', function(err) {
-    //     if (err) console.log(err);//reject(err);
-    //     else console.log("SUCCESS");
-    // })
+
+    fs.writeFileSync('../info.json', JSON.stringify(info))
     res.send('form submitted')
 })
 
@@ -50,14 +43,12 @@ app.post('/login', (req, res) => {
 
 app.get('/messages', (req, res) => {
     res.send(JSON.stringify(serverState.messages));
-    //console.log(serverState.messages)
 })
 
 
 app.post('/sendmsgs', (req, res) => {
     let bod = req.body.toString();
     serverState.messages.push(JSON.parse(bod))
-    //console.log(serverState.messages)
     res.send("success");
 })
 
