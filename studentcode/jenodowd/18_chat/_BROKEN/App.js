@@ -9,21 +9,22 @@ class App extends Component {
     this.state = {
       inputValue: "",
       messages: [],
-      username : undefined,
-      usernameInput: undefined,
-      passwordInput: undefined
+      //username: "Simon"
     }
   }
 
   componentDidMount = () => {
-    setInterval(this.getMessages, 500)
+    setInterval(this.getMessages, 100)
   }
 
   //POST MESSAGES
+
   getMessages = () => {
+    console.log("B1")
     fetch('/messages')
       .then(response => response.text())
       .then(msgs => {
+        console.log("B4",msgs)
         this.setState({ messages: JSON.parse(msgs) })
       })
   }
@@ -45,7 +46,9 @@ class App extends Component {
   }
 
 
+
   //USER LOGIN
+
   handleUsernameChange = (event) => {
     this.setState({ usernameInput: event.target.value })
   }
@@ -62,7 +65,6 @@ class App extends Component {
         password: this.state.passwordInput
       }
     )
-
     fetch('/login', { method: 'POST', body: bod })
       .then(response => response.text())
       .then(responseBody => {
@@ -73,19 +75,8 @@ class App extends Component {
         }
       })
     this.setState({ username: this.state.usernameInput })
-
-
-
-    let welcomebod = JSON.stringify(
-        {
-          contents: this.state.usernameInput + " has entered the chat!"
-        }
-      )
-      fetch('/welcome', { method: 'POST', body: welcomebod });
-
   }
 
-  //USER SIGN UP
   handleSignUpSubmit = (event) => {
     event.preventDefault();
     let bod = JSON.stringify(
@@ -94,21 +85,20 @@ class App extends Component {
         password: this.state.passwordInput
       }
     )
+    console.log("A1", bod)
     fetch('/createaccount', { method: 'POST', body: bod })
-      .then(response => response.text())
-      .then(responseBody => {
-        if (responseBody === "failure") {
-          this.setState({ signUpFailed: true })
-        }
-      })
+    .then(e => { e.text() })
+    .then(e => console.log("A4", e))
+      //.then(e => { this.setState({ username: this.state.usernameInput, password: this.state.passwordInput }) })
   }
+
 
   renderLoginForm = () => {
     return (
       <div>
         <div>
           Sign Up:
-          <form onSubmit={this.handleSignUpSubmit} >
+    <form onSubmit={this.handleSignUpSubmit} >
             <input type="text" value={this.usernameInput} onChange={this.handleUsernameChange}></input>
             <input type="password" value={this.passwordInput} onChange={this.handlePasswordChange}></input>
             <input type="submit"></input>
@@ -116,7 +106,7 @@ class App extends Component {
         </div>
         <div>
           Login:
-         <form onSubmit={this.handleLoginSubmit} >
+    <form onSubmit={this.handleLoginSubmit} >
             <input type="text" value={this.usernameInput} onChange={this.handleUsernameChange}></input>
             <input type="password" value={this.passwordInput} onChange={this.handlePasswordChange}></input>
             <input type="submit"></input>
@@ -126,33 +116,17 @@ class App extends Component {
   }
 
   renderMessage = () => {
-    return this.state.messages.slice(Math.max(this.state.messages.length - 10, 1)).map((msg, id) => 
-    (<li key={id}> <strong>{msg.username}</strong> {msg.contents} </li>)
+    return this.state.messages.map((msg, id) => (
+      <li key={id}> {msg.username}: {msg.contents} </li>)
     )
   }
-
-  renderUsers = () => {
-    let userArray = [];
-    this.state.messages.slice(Math.max(this.state.messages.length - 100, 1)).map((msg, id) => 
-    userArray.push(msg.username)
-    )
-    let unique = [...new Set(userArray)]; 
-    
-    return unique.map((user, id) => 
-    (<li key = {id}>{user}</li>)
-  )
-  }
-
 
   render() {
     if (!this.state.username) {
-      return this.renderLoginForm() 
+      return this.renderLoginForm()
     }
     if (this.state.loginFailed) {
-      return (<h1>Login Failed</h1>)
-    }
-    if (this.state.signUpFailed) {
-      return (<h1>You already have an account</h1>)
+      return (<h1>login failed</h1>)
     }
     console.log(this.state)
     return (
@@ -167,14 +141,6 @@ class App extends Component {
           <input type="text" value={this.state.inputValue} onChange={this.handleChange}></input>
           <input type="submit"></input>
         </form>
-        <br />
-        <br />
-        ACTIVE USERS:
-        <div>
-          <ul>
-            {this.renderUsers()}
-          </ul>
-        </div>
       </div>
     );
   }
