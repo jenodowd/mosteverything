@@ -10,7 +10,7 @@ let serverState = {
 
 let info = {}
 
-let sessionInfo = {}
+let sessionID = {}
 
 try {
     info = JSON.parse(fs.readFileSync('../info.json').toString())
@@ -26,6 +26,7 @@ app.post('/createaccount', (req, res) => {
     } else {
         info[username] = password;
     }
+
     fs.writeFileSync('../info.json', JSON.stringify(info))
     res.send('form submitted')
 })
@@ -35,14 +36,11 @@ app.post('/login', (req, res) => {
     let username = parsed.username;
     let password = parsed.password;
     if (info[username] === password) {
-        let sessionID = Math.floor(Math.random() * 10000000);
-        sessionInfo[sessionID] = username;
-        res.send(JSON.stringify({sessionID: sessionID}))
+        res.send('success')
     } else {
         res.send('failure');
     }
 })
-
 
 app.get('/messages', (req, res) => {
     res.send(JSON.stringify(serverState.messages));
@@ -50,15 +48,9 @@ app.get('/messages', (req, res) => {
 
 
 app.post('/sendmsgs', (req, res) => {
-    let parsed = JSON.parse(req.body.toString());
-    let sessionID = parsed.sessionID;
-
-    if (sessionID) {
-        let newMsg = {username: parsed.username, contents: parsed.contents}
-        serverState.messages.push(newMsg)
-        res.send('success');
-    }
-    else { res.send('fail')};
+    let bod = req.body.toString();
+    serverState.messages.push(JSON.parse(bod))
+    res.send("success");
 })
 
 app.post('/welcome', (req, res) => {

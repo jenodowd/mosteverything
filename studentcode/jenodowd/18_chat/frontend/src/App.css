@@ -9,3 +9,11 @@ ul {
   align-items: center;
   justify-content: center;
 }
+
+.login {
+  padding: 20px;
+}
+
+.signup {
+  padding: 20px;
+}

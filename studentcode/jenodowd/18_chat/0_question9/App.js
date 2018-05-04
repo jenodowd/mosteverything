@@ -30,24 +30,14 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.sessionID)
     let bod = JSON.stringify(
       {
-        sessionID: this.state.sessionID,
         username: this.state.username,
         contents: this.state.inputValue
       }
     )
     this.setState({ inputValue: "" })
-    fetch('/sendmsgs', { method: 'POST', body: bod })
-    .then(response => response.text())
-    //.then(x => console.log(x))
-    .then(responseBody => {
-      if (responseBody !== "success") {
-        this.setState(console.log('session ID does not exist'))
-      }
-    })
-
+    fetch('/sendmsgs', { method: 'POST', body: bod });
   }
 
   handleChange = (event) => {
@@ -76,21 +66,20 @@ class App extends Component {
     fetch('/login', { method: 'POST', body: bod })
       .then(response => response.text())
       .then(responseBody => {
-        let parsed = JSON.parse(responseBody);
-        let sessionID = parsed.sessionID;
-        if (sessionID) {
-          this.setState(
-            { sessionID: sessionID, 
-              username: this.state.usernameInput });
+        if (responseBody === "success") {
+          this.setState({ username: this.state.usernameInput });
         } else {
           this.setState({ loginFailed: true })
         }
       })
-
     this.setState({ username: this.state.usernameInput })
 
-      let welcomebod = JSON.stringify(
-        { contents: this.state.usernameInput + " has entered the chat!" }
+
+
+    let welcomebod = JSON.stringify(
+        {
+          contents: this.state.usernameInput + " has entered the chat!"
+        }
       )
       fetch('/welcome', { method: 'POST', body: welcomebod });
 
