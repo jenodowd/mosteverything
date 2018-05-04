@@ -1,3 +1,11 @@
 ul {
   list-style-type: none;
 }
+
+.loginContainer {
+  height: 100%;
+  margin-top: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

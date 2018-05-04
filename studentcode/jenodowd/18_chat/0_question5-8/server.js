@@ -16,7 +16,7 @@ let info = {
 
 
 // try {
-//     info = JSON.parse(fs.readFileSync('../info.json').toString())
+//     info = JSON.parse(fs.readFileSync('./info.json').toString())
 //   } catch(err) {
 //   }
 
@@ -30,7 +30,7 @@ app.post('/createaccount', (req, res) => {
         info[username] = password;
     }
     // //fs.writeFileSync('./info.json', JSON.stringify(info))
-    // fs.writeFileSync('../info.json', JSON.stringify(info), 'utf8', function(err) {
+    // fs.writeFile('./info.json', JSON.stringify(info), 'utf8', function(err) {
     //     if (err) console.log(err);//reject(err);
     //     else console.log("SUCCESS");
     // })

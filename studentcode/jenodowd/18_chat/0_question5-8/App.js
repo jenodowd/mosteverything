@@ -105,17 +105,8 @@ class App extends Component {
 
   renderLoginForm = () => {
     return (
-      <div className = "loginContainer">
+      <div>
         <div>
-        <div className = "login">
-          Login:
-         <form onSubmit={this.handleLoginSubmit} >
-            <input type="text" value={this.usernameInput} onChange={this.handleUsernameChange}></input>
-            <input type="password" value={this.passwordInput} onChange={this.handlePasswordChange}></input>
-            <input type="submit"></input>
-          </form>
-        </div>
-        <div className = "signup">
           Sign Up:
           <form onSubmit={this.handleSignUpSubmit} >
             <input type="text" value={this.usernameInput} onChange={this.handleUsernameChange}></input>
@@ -123,9 +114,15 @@ class App extends Component {
             <input type="submit"></input>
           </form>
         </div>
+        <div>
+          Login:
+         <form onSubmit={this.handleLoginSubmit} >
+            <input type="text" value={this.usernameInput} onChange={this.handleUsernameChange}></input>
+            <input type="password" value={this.passwordInput} onChange={this.handlePasswordChange}></input>
+            <input type="submit"></input>
+          </form>
         </div>
-      </div>
-      )
+      </div>)
   }
 
   renderMessage = () => {
