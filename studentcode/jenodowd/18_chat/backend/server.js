@@ -39,10 +39,21 @@ app.post('/login', (req, res) => {
         let sessionID = Math.floor(Math.random() * 10000000);
         sessionInfo[sessionID] = username;
         res.set('Set-Cookie', sessionID)
-        res.send("success")
+        res.send(JSON.stringify(sessionID))
     } else {
         res.send('failure');
     }
+})
+
+app.get('/checksession', (req, res) => {
+    console.log(req.headers.cookie, sessionInfo[req.headers.cookie])
+
+    //res.send('ok');
+    if (sessionInfo[req.headers.cookie]) {
+        res.send(JSON.stringify(sessionInfo[req.headers.cookie]));
+    }
+    
+
 })
 
 

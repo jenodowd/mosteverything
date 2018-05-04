@@ -16,6 +16,12 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    fetch('/checksession', { method: 'GET', credentials: "same-origin" })
+    .then(x => x.text())
+    .then(x => JSON.parse(x))
+    .then(x => this.setState({username: x}))
+    
+
     setInterval(this.getMessages, 500)
   }
 
@@ -76,9 +82,9 @@ class App extends Component {
     fetch('/login', { method: 'POST', body: bod, credentials: "same-origin"})
       .then(response => response.text())
       .then(responseBody => {
-        console.log(responseBody)
-         if (responseBody === "success"){
-            this.setState({username: this.state.usernameInput });
+         let sessionID = JSON.parse(responseBody)
+         if (sessionID){
+            this.setState({username: this.state.usernameInput, sessionID: sessionID });
          } else{
             this.setState({ loginFailed: true })
          }
@@ -165,7 +171,8 @@ class App extends Component {
     if (this.state.signUpFailed) {
       return (<h1>You already have an account</h1>)
     }
-    //if(!this.state.sessionID) {console.log("has a session")}
+    if(!this.state.sessionID) {console.log("no session")}
+    
     return (
       <div>
         CHAT:
