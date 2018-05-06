@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const fs = require("fs")
 app.use(bodyParser.raw({ type: "*/*" }))
 
-let time = new Date().getTime()
-
 let serverState = {
     messages: []
 }
@@ -14,13 +12,10 @@ let info = {}
 
 let sessionInfo = {}
 
-let activeUsers = []
-
-
 try {
     info = JSON.parse(fs.readFileSync('../info.json').toString())
-} catch (err) {
-}
+  } catch(err) {
+  }
 
 app.post('/createaccount', (req, res) => {
     let parsed = JSON.parse(req.body.toString());
@@ -53,6 +48,7 @@ app.post('/login', (req, res) => {
 app.get('/checksession', (req, res) => {
     console.log(req.headers.cookie, sessionInfo[req.headers.cookie])
 
+    //res.send('ok');
     if (sessionInfo[req.headers.cookie]) {
         res.send(JSON.stringify(sessionInfo[req.headers.cookie]));
     }
@@ -66,34 +62,24 @@ app.get('/messages', (req, res) => {
 
 app.post('/sendmsgs', (req, res) => {
     let parsed = JSON.parse(req.body.toString());
+    // let sessionID = parsed.sessionID;
     let sessionID = req.headers.cookie
+    //header
+        console.log(sessionID)
 
     if (sessionID) {
-        let newMsg = { username: parsed.username, contents: parsed.contents }
+        let newMsg = {username: parsed.username, contents: parsed.contents}
         serverState.messages.push(newMsg)
-
+        
         res.send('success');
     }
-    else { res.send('fail') };
+    else { res.send('fail')};
 })
 
 app.post('/welcome', (req, res) => {
     let bod = req.body.toString();
     serverState.messages.push(JSON.parse(bod))
     res.send("success");
-})
-
-app.post('/timesent', (req, res) => {
-    let parsed = JSON.parse(req.body.toString());
-    let messageTime = { username: parsed.username, time: parsed.time }
-    activeUsers.push(messageTime)
-    res.send(JSON.stringify("success"))
-})
-
-
-
-app.get('/activeusers', (req, res) => {
-    res.send(JSON.stringify(activeUsers));
 })
 
 
